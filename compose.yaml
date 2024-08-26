@@ -1,0 +1,16 @@
+services:
+  nat-pod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+  client-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+  client-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
