@@ -4,13 +4,33 @@ services:
       context: .
       dockerfile: Dockerfile
     privileged: true
+    volumes:
+      - /lib/modules:/lib/modules
+    cap_add:
+      - ALL
+    networks:
+      app_net:
+        ipv4_address: 172.30.10.11
   client-1:
     build:
       context: .
       dockerfile: Dockerfile
     privileged: true
+    networks:
+      app_net:
+        ipv4_address: 172.30.10.12
   client-2:
     build:
       context: .
       dockerfile: Dockerfile
     privileged: true
+    networks:
+      app_net:
+        ipv4_address: 172.30.10.13
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.10.0/24
